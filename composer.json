@@ -1,9 +1,9 @@
 {
-    "name": "slim/figdice-view",
+    "name": "intraworq/figdice-view",
     "type": "library",
     "description": "Slim Framework 3 view helper built on top of the FigDice templating component",
     "keywords": ["slim","framework","view","template","figdice"],
-    "homepage": "http://slimframework.com",
+    "homepage": "http://intraworq.com",
     "license": "MIT",
     "authors": [
         {
