@@ -14,6 +14,37 @@ $ composer require intraworq/figdice-view
 
 Requires Slim Framework 3 and PHP 5.6.0 or newer.
 
+## Usage
+
+### 1. Register FigDice SlimView component in Slim container
+~~~~php
+// Create container
+$container = new \Slim\Container;
+
+// Register component on container
+$container['view'] = function ($c) {
+  $view = new Slim\Views\FigDice('path/to/templates', $settings_array);
+  // ...
+  return $view;
+};
+~~~~
+
+### 2. Render FigDice templates in Slim routes
+~~~~php
+// Create app
+$app = new \Slim\App($container);
+
+// Render FigDice template in route
+$app->get('/hello/{name}', function ($request, $response, $args) {
+    return $this->view->render($response, 'profile.html', [
+        'name' => $args['name']
+    ]);
+});
+
+// Run app
+$app->run();
+~~~~
+
 ## Testing
 
 ```bash
