@@ -1,4 +1,4 @@
-<html lang="pl" fig:doctype="html">
+<html lang="pl" fig:doctype="html" xmlns:fig="http://www.figdice.org/">
 <head>
     <!-- The <title> tag below will not be rendered directly, because of its
          fig:slot attribute. It is here simply to declare a placeholder within
@@ -10,7 +10,6 @@
     <title fig:slot="pageTitle"> This is a placeholder for the real title </title>
 </head>
 <body>
-
 <!-- This navbar div is shown on every page, unconditionally. -->
 <div class="navbar">
     <ul>
@@ -18,8 +17,6 @@
         <li>Repeated on every page</li>
     </ul>
 </div>
-
-
 <!-- The following div (and its whole content) will stripped out of
      the output if the value of "/isLogged" is false. -->
 <div fig:cond="/isLogged" class="welcome-box">
