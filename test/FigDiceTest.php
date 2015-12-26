@@ -3,6 +3,7 @@
 //namespace Slim\Tests\Views;
 
 use Slim\Views\FigDice;
+
 require 'DummyStream.php';
 
 class FigDiceTest extends \PHPUnit_Framework_TestCase
@@ -26,7 +27,6 @@ class FigDiceTest extends \PHPUnit_Framework_TestCase
         $mockResponse->expects($this->once())
             ->method('getBody')
             ->willReturn($body);
-        $this->view->fetch('template1.html');
         $response = $this->view->render($mockResponse, 'template1.html');
         $this->assertInstanceOf('Psr\Http\Message\ResponseInterface', $response);
         $expected = <<<EOT
@@ -43,7 +43,7 @@ class FigDiceTest extends \PHPUnit_Framework_TestCase
 	    </html>
 EOT;
 
-	    $this->assertEquals(preg_replace('/\s+/', '', $expected), preg_replace('/\s+/', '', $body->__toString()));
+        $this->assertEquals(preg_replace('/\s+/', '', $expected), preg_replace('/\s+/', '', $body->__toString()));
     }
 
     public function testRenderWithVariablesBinding()
@@ -55,13 +55,12 @@ EOT;
         $mockResponse->expects($this->once())
             ->method('getBody')
             ->willReturn($body);
-        $user = [
-                'name' => 'Bolek',
-                'email' => 'bolek@vault13.pl'
-                ];
-        $this->view->fetch('template1.html');
-        $this->view->bind('user', $user);
-        $response = $this->view->render($mockResponse, 'template1.html');
+        $user = ['user' => [
+            'name' => 'Bolek',
+            'email' => 'bolek@vault13.pl'
+        ]
+        ];
+        $response = $this->view->render($mockResponse, 'template1.html', $user);
         $this->assertInstanceOf('Psr\Http\Message\ResponseInterface', $response);
         $expected = <<<EOT
         <!doctype html>
@@ -79,4 +78,33 @@ EOT;
 
         $this->assertEquals(preg_replace('/\s+/', '', $expected), preg_replace('/\s+/', '', $body->__toString()));
     }
+
+    public function testRenderingIncludedTemplates()
+    {
+        $mockResponse = $this->getMockBuilder('Psr\Http\Message\ResponseInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $body = new DummyStream();
+        $mockResponse->expects($this->once())
+            ->method('getBody')
+            ->willReturn($body);
+        $response = $this->view->render($mockResponse, 'template2.html');
+        $this->assertInstanceOf('Psr\Http\Message\ResponseInterface', $response);
+        $this->assertEquals(1, preg_match("/Contact Us/", $body->__toString(), $matches, PREG_OFFSET_CAPTURE), "Template should include footer section.");
+    }
+
+    public function testConditionalRendering()
+    {
+        $mockResponse = $this->getMockBuilder('Psr\Http\Message\ResponseInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $body = new DummyStream();
+        $mockResponse->expects($this->once())
+            ->method('getBody')
+            ->willReturn($body);
+        $response = $this->view->render($mockResponse, 'template2.html', ['isLoggedIn' => false]);
+        $this->assertInstanceOf('Psr\Http\Message\ResponseInterface', $response);
+        $this->assertEquals(1, preg_match("/sign in/", $body->__toString(), $matches, PREG_OFFSET_CAPTURE), "Template should include footer section.");
+    }
 }
+

@@ -8,7 +8,7 @@ This is a Slim Framework view helper built on top of the FigDice templating comp
 ## Testing
 
 ```bash
-phpunit
+phpunit --coverage-text --configuration phpunit.xml.dist
 ```
 
 ## Contributing

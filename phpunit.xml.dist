@@ -20,6 +20,7 @@
     <filter>
         <whitelist>
             <directory>./src</directory>
+            <file>./test/DummyStream.php</file>
         </whitelist>
     </filter>
 </phpunit>
