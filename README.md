@@ -4,6 +4,15 @@
 
 This is a Slim Framework view helper built on top of the FigDice templating component. You can use this component to create and render templates in your Slim Framework application.
 
+## Install
+
+Via [Composer](https://getcomposer.org/)
+
+```bash
+$ composer require intraworq/figdice-view
+```
+
+Requires Slim Framework 3 and PHP 5.6.0 or newer.
 
 ## Testing
 

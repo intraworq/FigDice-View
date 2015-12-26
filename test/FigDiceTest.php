@@ -99,12 +99,16 @@ EOT;
             ->disableOriginalConstructor()
             ->getMock();
         $body = new DummyStream();
-        $mockResponse->expects($this->once())
+        $mockResponse->expects($this->any())
             ->method('getBody')
             ->willReturn($body);
-        $response = $this->view->render($mockResponse, 'template2.html', ['isLoggedIn' => false]);
+        $response = $this->view->render($mockResponse, 'template2.html', ['isLogged' => false]);
         $this->assertInstanceOf('Psr\Http\Message\ResponseInterface', $response);
-        $this->assertEquals(1, preg_match("/sign in/", $body->__toString(), $matches, PREG_OFFSET_CAPTURE), "Template should include footer section.");
+        $this->assertEquals(1, preg_match("/sign in/", $body->__toString(), $matches, PREG_OFFSET_CAPTURE), "Template should include 'sign in' for not logged in users.");
+        $body->rewind();
+        $this->view->bind('isLogged', true);
+        $this->view->render($mockResponse, 'template2.html');
+        $this->assertEquals(1, preg_match("/Welcome back/", $body->__toString(), $matches, PREG_OFFSET_CAPTURE), "Template should include 'Welcome back' for logged in users.");
     }
 }
 

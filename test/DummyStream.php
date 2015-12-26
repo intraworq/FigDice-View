@@ -38,7 +38,10 @@ class DummyStream implements \Psr\Http\Message\StreamInterface
 
     public function seek($offset, $whence = SEEK_SET) {}
 
-    public function rewind() {}
+    public function rewind()
+    {
+        $this->data = [];
+    }
 
     public function isReadable() {}
 
