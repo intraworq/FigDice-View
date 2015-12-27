@@ -62,7 +62,7 @@ class FigDice
      *
      * @return \figdice\View
      */
-    puwblic function getView()
+    public function getView()
     {
         return $this->view;
     }
