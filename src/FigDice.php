@@ -35,6 +35,8 @@ class FigDice
      */
     protected $templatesPath;
 
+    protected $templateLoaded;
+
 
     /**
      * Create new FigDice view
@@ -55,19 +57,14 @@ class FigDice
 
     }
 
-    public function getView()
+    /**
+     * Returns the underlying FigDice View
+     *
+     * @return \figdice\View
+     */
+    puwblic function getView()
     {
         return $this->view;
-    }
-
-    /**
-     * Fetches the template from disk.
-     *
-     * @param $template
-     */
-    public function fetch($template)
-    {
-        $this->view->loadFile($this->templatesPath . DIRECTORY_SEPARATOR . $template);
     }
 
     /**
