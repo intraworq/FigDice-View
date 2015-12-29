@@ -95,4 +95,22 @@ class FigDice
         $response->getBody()->write($this->view->render());
         return $response;
     }
+
+    /**
+     * Renders template from provided string.
+     * 
+     * @param ResponseInterface $response
+     * @param $templateString
+     * @param array $data
+     * @return ResponseInterface
+     */
+    public function renderFromString(ResponseInterface $response, $templateString, array $data = [])
+    {
+        $this->view->loadString($templateString);
+        foreach ($data as $key => $value) {
+            $this->view->mount($key, $value);
+        }
+        $response->getBody()->write($this->view->render());
+        return $response;
+    }
 }

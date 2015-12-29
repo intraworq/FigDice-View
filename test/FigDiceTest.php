@@ -110,5 +110,38 @@ EOT;
         $this->view->render($mockResponse, 'template2.html');
         $this->assertEquals(1, preg_match("/Welcome back/", $body->__toString(), $matches, PREG_OFFSET_CAPTURE), "Template should include 'Welcome back' for logged in users.");
     }
+
+    public function testPluggingContentIntoSlots()
+    {
+        $mockResponse = $this->getMockBuilder('Psr\Http\Message\ResponseInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $body = new DummyStream();
+        $mockResponse->expects($this->once())
+            ->method('getBody')
+            ->willReturn($body);
+        $this->view->render($mockResponse, 'content.html');
+        $this->assertEquals(1, preg_match("/Actual title/", $body->__toString(), $matches, PREG_OFFSET_CAPTURE), "Template should include 'Welcome back' for logged in users.");
+    }
+
+    public function testRenderTemplateFromString()
+    {
+        $mockResponse = $this->getMockBuilder('Psr\Http\Message\ResponseInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $body = new DummyStream();
+        $mockResponse->expects($this->once())
+            ->method('getBody')
+            ->willReturn($body);
+        $template = <<<TEMPLATE
+<fig:template>
+<slot fig:slot="myslot">slot, would get removed</slot>
+<fig:mute fig:plug="myslot">Plugged!</fig:mute>
+</fig:template>
+TEMPLATE;
+
+        $this->view->renderFromString($mockResponse, $template);
+        $this->assertEquals(1, preg_match("/Plugged!/", $body->__toString(), $matches, PREG_OFFSET_CAPTURE), "Template should correctly render from string");
+    }
 }
 
