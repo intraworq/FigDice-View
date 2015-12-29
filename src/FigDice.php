@@ -98,7 +98,7 @@ class FigDice
 
     /**
      * Renders template from provided string.
-     * 
+     *
      * @param ResponseInterface $response
      * @param $templateString
      * @param array $data
