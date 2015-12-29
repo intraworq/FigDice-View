@@ -1,6 +1,6 @@
 # Slim Framework FigDice View
 
-[![Build Status](https://travis-ci.org/intraworq/FigDice-View.svg?branch=master)](https://travis-ci.org/intraworq/FigDice-View) [![version](https://img.shields.io/packagist/v/Intraworq/FigDice-View.svg?style=flat)](https://packagist.org/packages/Intraworq/FigDice-View)
+[![Build Status](https://travis-ci.org/intraworq/FigDice-View.svg?branch=master)](https://travis-ci.org/intraworq/FigDice-View) [![version](https://img.shields.io/packagist/v/Intraworq/FigDice-View.svg?style=flat)](https://packagist.org/packages/Intraworq/FigDice-View)[![Code Climate](https://codeclimate.com/github/intraworq/FigDice-View/badges/gpa.svg)](https://codeclimate.com/github/intraworq/FigDice-View)
 
 This is a Slim Framework view helper built on top of the FigDice templating component. You can use this component to create and render templates in your Slim Framework application.
 
