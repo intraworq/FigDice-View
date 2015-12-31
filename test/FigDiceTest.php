@@ -18,6 +18,11 @@ class FigDiceTest extends \PHPUnit_Framework_TestCase
         $this->view = new FigDice(__DIR__ . DIRECTORY_SEPARATOR . 'templates');
     }
 
+    protected function tearDown()
+    {
+        $this->view = null;
+    }
+
     public function testRenderWithoutVariables()
     {
         $mockResponse = $this->getMockBuilder('Psr\Http\Message\ResponseInterface')
