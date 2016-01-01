@@ -49,12 +49,9 @@ class FigDice
         $this->view = new \figdice\View();
         $this->settings = $settings;
         $this->templatesPath = $templatesPath;
-        if (array_key_exists('cache.path', $settings)) {
-            $this->view->setTempPath($settings['cache.path']);
-        } else {
+        array_key_exists('cache.path', $settings) ?
+            $this->view->setTempPath($settings['cache.path']) :
             $this->view->setTempPath(sys_get_temp_dir());
-        }
-
     }
 
     /**
@@ -89,10 +86,7 @@ class FigDice
     public function render(ResponseInterface $response, $template, array $data = [])
     {
         $this->view->loadFile($this->templatesPath . DIRECTORY_SEPARATOR . $template);
-        foreach ($data as $key => $value) {
-            $this->view->mount($key, $value);
-        }
-        $response->getBody()->write($this->view->render());
+        $this->renderWithData($response, $data);
         return $response;
     }
 
@@ -107,10 +101,19 @@ class FigDice
     public function renderFromString(ResponseInterface $response, $templateString, array $data = [])
     {
         $this->view->loadString($templateString);
+        $this->renderWithData($response, $data);
+        return $response;
+    }
+
+    /**
+     * @param ResponseInterface $response
+     * @param array $data
+     */
+    private function renderWithData(ResponseInterface $response, array $data)
+    {
         foreach ($data as $key => $value) {
             $this->view->mount($key, $value);
         }
         $response->getBody()->write($this->view->render());
-        return $response;
     }
 }
