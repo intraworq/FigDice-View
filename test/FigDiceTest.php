@@ -148,5 +148,25 @@ TEMPLATE;
         $this->view->renderFromString($mockResponse, $template);
         $this->assertEquals(1, preg_match("/Plugged!/", $body->__toString(), $matches, PREG_OFFSET_CAPTURE), "Template should correctly render from string");
     }
+
+    public function testRenderScriptTag()
+    {
+        $mockResponse = $this->getMockBuilder('Psr\Http\Message\ResponseInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $body = new DummyStream();
+        $mockResponse->expects($this->once())
+            ->method('getBody')
+            ->willReturn($body);
+        $template = <<<TEMPLATE
+<fig:template>
+        <script src="/assets/require.js"></script>
+        <link href="/assets/style.css" rel="stylesheet" />
+</fig:template>
+TEMPLATE;
+        $this->view->renderFromString($mockResponse, $template);
+        $this->assertEquals(1, preg_match("/<script src=\"\/assets\/require.js\"><\/script>/", $body->__toString(), $matches, PREG_OFFSET_CAPTURE), "Template should correctly render from string");
+
+    }
 }
 
