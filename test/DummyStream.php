@@ -6,7 +6,7 @@ class DummyStream implements \Psr\Http\Message\StreamInterface
 
     function __construct()
     {
-        $data = [];
+        $this->data = array();
     }
 
     public function isWritable()
@@ -40,7 +40,7 @@ class DummyStream implements \Psr\Http\Message\StreamInterface
 
     public function rewind()
     {
-        $this->data = [];
+        $this->data = array();
     }
 
     public function isReadable() {}

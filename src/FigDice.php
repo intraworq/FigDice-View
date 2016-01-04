@@ -1,9 +1,23 @@
 <?php
-
+/**
+ * FigDice provides Slim integrations
+ *
+ * FigDice provides Slim integrations
+ *
+ * @package      Slim\Views
+ * @category     Templating
+ * @author       Bolek Tekielski <bt@intraworq.com>
+ */
 namespace Slim\Views;
 
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Class FigDice provides Slim integrations to FigDice templating.
+ *
+ * Class FigDice
+ * @package Slim\Views
+ */
 class FigDice
 {
 
@@ -12,7 +26,7 @@ class FigDice
      *
      * @var array
      */
-    protected $defaultVariables = [];
+    protected $defaultVariables = array();
 
     /**
      * FigDice view instance
@@ -44,7 +58,7 @@ class FigDice
      * @param string $templatesPath Path to templates directory
      * @param array $settings Twig environment settings
      */
-    public function __construct($templatesPath = '.', $settings = [])
+    public function __construct($templatesPath = '.', $settings = array())
     {
         $this->view = new \figdice\View();
         $this->settings = $settings;
@@ -83,7 +97,7 @@ class FigDice
      * @param array $data
      * @return ResponseInterface
      */
-    public function render(ResponseInterface $response, $template, array $data = [])
+    public function render(ResponseInterface $response, $template, array $data = array())
     {
         $this->view->loadFile($this->templatesPath . DIRECTORY_SEPARATOR . $template);
         $this->renderWithData($response, $data);
@@ -98,7 +112,7 @@ class FigDice
      * @param array $data
      * @return ResponseInterface
      */
-    public function renderFromString(ResponseInterface $response, $templateString, array $data = [])
+    public function renderFromString(ResponseInterface $response, $templateString, array $data = array())
     {
         $this->view->loadString($templateString);
         $this->renderWithData($response, $data);
@@ -109,7 +123,7 @@ class FigDice
      * @param ResponseInterface $response
      * @param array $data
      */
-    private function renderWithData(ResponseInterface $response, array $data)
+    private function renderWithData(ResponseInterface $response, array $data = array())
     {
         foreach ($data as $key => $value) {
             $this->view->mount($key, $value);
