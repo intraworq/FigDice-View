@@ -168,5 +168,11 @@ TEMPLATE;
         $this->assertEquals(1, preg_match("/<script src=\"\/assets\/require.js\"><\/script>/", $body->__toString(), $matches, PREG_OFFSET_CAPTURE), "Template should correctly render from string");
 
     }
+
+    public function testGetUnderlyingView()
+    {
+        $figDiceView = $this->view->getView();
+        $this->assertInstanceOf('\figdice\View', $figDiceView);
+    }
 }
 

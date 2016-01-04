@@ -9,11 +9,11 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="test/bootstrap.php"
+         bootstrap="vendor/autoload.php"
 >
     <testsuites>
-        <testsuite name="Slim Test Suite">
-            <directory>./test/</directory>
+        <testsuite name="FigDice-View Suite">
+            <directory>./test</directory>
         </testsuite>
     </testsuites>
 
