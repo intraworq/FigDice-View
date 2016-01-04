@@ -162,10 +162,13 @@ TEMPLATE;
 <fig:template>
         <script src="/assets/require.js"></script>
         <link href="/assets/style.css" rel="stylesheet" />
+        <script>
+            <fig:attr name="src" value="url" />
+        </script>
 </fig:template>
 TEMPLATE;
-        $this->view->renderFromString($mockResponse, $template);
-        $this->assertEquals(1, preg_match("/<script src=\"\/assets\/require.js\"><\/script>/", $body->__toString(), $matches, PREG_OFFSET_CAPTURE), "Template should correctly render from string");
+        $this->view->renderFromString($mockResponse, $template, ['url' => '/assets/jquery.js']);
+        $this->assertEquals(1, preg_match("/<script src=\"\/assets\/jquery.js\">/", $body->__toString(), $matches, PREG_OFFSET_CAPTURE), "Template should correctly render from string");
 
     }
 
