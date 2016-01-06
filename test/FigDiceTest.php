@@ -159,9 +159,9 @@ TEMPLATE;
             ->method('getBody')
             ->willReturn($body);
         $template = <<<TEMPLATE
-<fig:template>
-        <script src="/assets/require.js"></script>
+<fig:template xmlns:fig="http://www.figdice.org/">
         <link href="/assets/style.css" rel="stylesheet" />
+        <script src="/assets/require.js"></script>
         <script>
             <fig:attr name="src" value="url" />
         </script>

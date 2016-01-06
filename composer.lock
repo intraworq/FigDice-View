@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "figdice/figdice",
-            "version": "2.3",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/gabrielzerbib/figdice.git",
-                "reference": "344c1d96fccdd36bd65c01f65339fe15939dec3b"
+                "url": "https://github.com/figdice/figdice.git",
+                "reference": "d57380c033fe5e0b7411dd96c2ecc9c558855bc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gabrielzerbib/figdice/zipball/344c1d96fccdd36bd65c01f65339fe15939dec3b",
-                "reference": "344c1d96fccdd36bd65c01f65339fe15939dec3b",
+                "url": "https://api.github.com/repos/figdice/figdice/zipball/d57380c033fe5e0b7411dd96c2ecc9c558855bc9",
+                "reference": "d57380c033fe5e0b7411dd96c2ecc9c558855bc9",
                 "shasum": ""
             },
             "require": {
@@ -58,7 +58,7 @@
                 "views",
                 "xml"
             ],
-            "time": "2016-01-01 13:20:25"
+            "time": "2016-01-05 08:33:30"
         },
         {
             "name": "psr/http-message",

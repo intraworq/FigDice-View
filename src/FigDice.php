@@ -53,10 +53,10 @@ class FigDice
 
 
     /**
-     * Create new FigDice view
+     * Create new FigDice view.
      *
      * @param string $templatesPath Path to templates directory
-     * @param array $settings Twig environment settings
+     * @param array $settings environment settings
      */
     public function __construct($templatesPath = '.', $settings = array())
     {
@@ -79,7 +79,7 @@ class FigDice
     }
 
     /**
-     * Binds data to placeholders in template
+     * Binds data to placeholders in template.
      *
      * @param $placeholder
      * @param $data
@@ -90,7 +90,7 @@ class FigDice
     }
 
     /**
-     * Renders template to the ResponseInterface stream
+     * Renders template from file to the ResponseInterface stream.
      *
      * @param ResponseInterface $response
      * @param $template
@@ -105,7 +105,7 @@ class FigDice
     }
 
     /**
-     * Renders template from provided string.
+     * Renders template from string to the ResponseInterface stream.
      *
      * @param ResponseInterface $response
      * @param $templateString
